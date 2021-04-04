@@ -276,6 +276,7 @@ class Hand:
                 if i and not i%100 and an.measure:
                     print('scanned', i, '/', N,
                           'notes, measure', an.measure+1, ' for the', self.LR ,'hand...')
+        print(self.LR, count_fails)
 
 
 
