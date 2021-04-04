@@ -217,8 +217,7 @@ class Hand:
 
             if best_finger>0 and i < N-3:
                 fng = Fingering(best_finger)
-                name_fingers = '/Users/pedroramonedafranco/PycharmProjects/TFM/' + '/'.join(
-                    ["Fingers"] + filename.split('/')[1:]) + '#fingers#' + self.LR + '.json'
+                name_fingers = '/content/fingers#' + self.LR + '.json'
                 if os.path.exists(name_fingers):
                     with open(name_fingers) as json_file:
                         data = json.load(json_file)
@@ -249,13 +248,13 @@ class Hand:
 
             #---------------------------------------------------------------------------- print
             if self.verbose:
-                if not best_finger: best_finger = '?'
-                if an.measure: print(f"meas.{an.measure: <3}", end=' ')
-                print(f"finger_{best_finger}  plays  {an.name: >2}{an.octave}", end=' ')
+                if not best_finger:
+                    exit(1)
+                # print(f"finger_{best_finger}  plays  {an.name: >2}{an.octave}", end=' ')
                 if i < N-10:
-                    print(f"  v={round(vel,1)}", end='')
+                    # print(f"  v={round(vel,1)}", end='')
 
-                    name_velocities = '/Users/pedroramonedafranco/PycharmProjects/TFM/' + '/'.join(["Fingers"] + filename.split('/')[1:]) + '#velocity#' + self.LR + '.json'
+                    name_velocities = '/content/velocity#' + self.LR + '.json'
                     if os.path.exists(name_velocities):
                         with open(name_velocities) as json_file:
                             data = json.load(json_file)
@@ -264,10 +263,10 @@ class Hand:
                         velocities = [round(vel, 4)]
                     with open(name_velocities, 'w') as outfile:
                         json.dump(velocities, outfile)
-                    if self.autodepth:
-                        print("\t "+str(out[0:self.depth]) + " d:" + str(self.depth))
-                    else:
-                        print("\t"+("   "*(i%self.depth))+str(out[0:self.depth]))
+                    # if self.autodepth:
+                    #     # print("\t "+str(out[0:self.depth]) + " d:" + str(self.depth))
+                    # else:
+                    #     # print("\t"+("   "*(i%self.depth))+str(out[0:self.depth]))
                 else:
                     print()
             else:
