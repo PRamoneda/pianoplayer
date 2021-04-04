@@ -179,6 +179,7 @@ class Hand:
     ###########################################################################################
     def generate(self, start_measure=0, nmeasures=1000, filename="temp"):
 
+        count_fails = 0
         if start_measure == 1:
             start_measure=0 # avoid confusion with python numbering
 
@@ -249,6 +250,8 @@ class Hand:
             #---------------------------------------------------------------------------- print
             if self.verbose:
                 if not best_finger:
+                    count_fails += 1
+                if count_fails >= 10:
                     exit(1)
                 # print(f"finger_{best_finger}  plays  {an.name: >2}{an.octave}", end=' ')
                 if i < N-10:
